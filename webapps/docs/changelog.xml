@@ -10531,6 +10531,10 @@
       <add>
         Add escaping to log formatters to align with JSON formatter. (markt)
       </add>
+      <fix>
+        Be proactive in cleaning up temporary files after a failed multi-part
+        upload rather than waiting for GC to do it. (markt)
+      </fix>
     </changelog>
   </subsection>
 </section>
