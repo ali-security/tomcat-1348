@@ -6040,6 +6040,9 @@
          Fix handling of <code>QSA</code> and <code>QSD</code> flags in
         <code>RewriteValve</code>. (markt)
       </fix>
+      <add>
+        Add escaping to log formatters to align with JSON formatter. (markt)
+      </add>
     </changelog>
   </subsection>
   <subsection name="Coyote">
