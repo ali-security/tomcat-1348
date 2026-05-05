@@ -58,3 +58,11 @@ jobs:
           hs_err_*.log
           output/build/logs/TEST*.txt
         retention-days: 7
+
+    - name: Upload jars
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: JDK${{ matrix.java }}-${{ matrix.os }}-jars
+        path: output/embed/*.jar
+        retention-days: 7
