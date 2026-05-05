@@ -368,6 +368,33 @@ public abstract class AbstractEndpoint<S,U> {
         return sslHostConfigs.values().toArray(new SSLHostConfig[0]);
     }
 
+
+    private boolean strictSni = true;
+
+    public boolean getStrictSni() {
+        return strictSni;
+    }
+
+    public void setStrictSni(boolean strictSni) {
+        this.strictSni = strictSni;
+    }
+
+
+    /**
+     * Check if two host names share the same SSLHostConfig.
+     *
+     * @param sniHostName the host name from SNI, null if SNI is not in use
+     * @param protocolHostName the host name from the protocol
+     * @return true if SNI is not checked, if the SNI host name matches the protocol host name,
+     *    if both host names use the same SSLHostConfig configuration, if there is no SNI and the
+     *    protocol host name uses the default SSLHostConfig configuration, and false otherwise
+     */
+    public boolean checkSni(String sniHostName, String protocolHostName) {
+        return (!strictSni || !isSSLEnabled()
+                || (sniHostName != null && sniHostName.equalsIgnoreCase(protocolHostName))
+                || getSSLHostConfig(sniHostName) == getSSLHostConfig(protocolHostName));
+    }
+
     /**
      * Create the SSLContext for the given SSLHostConfig.
      *

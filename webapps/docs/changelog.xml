@@ -10539,6 +10539,12 @@
         Reject HTTP/0.9 requests that use any method other than
         <code>GET</code>. (markt)
       </fix>
+      <add>
+        Add a new attribute <code>strictSni</code> to the <code>Connector</code>
+        that verifies the <code>SSLHostConfig</code> matched by SNI is the same
+        as the one matched by the HTTP host. Non-matching requests are
+        rejected with a 400 response. (markt)
+      </add>
     </changelog>
   </subsection>
 </section>

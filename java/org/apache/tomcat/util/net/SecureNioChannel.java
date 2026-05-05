@@ -278,6 +278,7 @@ public class SecureNioChannel extends NioChannel {
         switch (extractor.getResult()) {
         case COMPLETE:
             hostName = extractor.getSNIValue();
+            socketWrapper.setSniHostName(hostName);
             clientRequestedApplicationProtocols =
                     extractor.getClientRequestedApplicationProtocols();
             //$FALL-THROUGH$ to set the client requested ciphers

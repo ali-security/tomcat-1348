@@ -61,6 +61,7 @@ public abstract class SocketWrapperBase<E> {
     private volatile boolean upgraded = false;
     private boolean secure = false;
     private String negotiatedProtocol = null;
+    protected String sniHostName = null;
 
     /*
      * Following cached for speed / reduced GC
@@ -218,6 +219,20 @@ public abstract class SocketWrapperBase<E> {
     public String getNegotiatedProtocol() { return negotiatedProtocol; }
     public void setNegotiatedProtocol(String negotiatedProtocol) {
         this.negotiatedProtocol = negotiatedProtocol;
+    }
+
+    /**
+     * @return the sniHostName
+     */
+    public String getSniHostName() {
+        return this.sniHostName;
+    }
+
+    /**
+     * @param sniHostName the SNI host name to set
+     */
+    public void setSniHostName(String sniHostName) {
+        this.sniHostName = sniHostName;
     }
 
     /**
