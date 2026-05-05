@@ -10545,6 +10545,10 @@
         as the one matched by the HTTP host. Non-matching requests are
         rejected with a 400 response. (markt)
       </add>
+      <add>
+        Align the OCSP checks performed by the panama-based OpenSSL connector
+        with those performed by JSSE. (markt)
+      </add>
     </changelog>
   </subsection>
 </section>
