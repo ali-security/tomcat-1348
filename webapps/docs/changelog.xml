@@ -10520,6 +10520,10 @@
         Align size tracking for multipart requests with FileUpload's use of
         <code>long</code>. (schultz)
       </fix>
+      <fix>
+        When setting the initial HTTP/2 connection limit, apply those limits
+        earlier. (markt)
+      </fix>
     </changelog>
   </subsection>
 </section>
