@@ -94,6 +94,7 @@ public final class OpenSSLEngine extends SSLEngine implements SSLUtil.ProtocolIn
     private static final int MAX_PLAINTEXT_LENGTH = 16 * 1024; // 2^14
     private static final int MAX_COMPRESSED_LENGTH = MAX_PLAINTEXT_LENGTH + 1024;
     private static final int MAX_CIPHERTEXT_LENGTH = MAX_COMPRESSED_LENGTH + 1024;
+    private static final int OCSP_MAX_RESPONSE_SIZE = 100 * 1024;
 
     // Header (5) + Data (2^14) + Compression (1024) + Encryption (1024) + MAC (20) + Padding (256)
     private static final int MAX_ENCRYPTED_PACKET_LENGTH = MAX_CIPHERTEXT_LENGTH + 5 + 20 + 256;
@@ -1322,6 +1323,10 @@ public final class OpenSSLEngine extends SSLEngine implements SSLUtil.ProtocolIn
             int read;
             byte[] responseBuf = new byte[1024];
             while ((read = is.read(responseBuf)) > 0) {
+                if (baos.size() > OCSP_MAX_RESPONSE_SIZE) {
+                    X509_STORE_CTX_set_error(x509ctx, X509_V_ERR_UNABLE_TO_GET_CRL());
+                    return V_OCSP_CERTSTATUS_UNKNOWN();
+                }
                 baos.write(responseBuf, 0, read);
             }
             byte[] responseData = baos.toByteArray();
@@ -1346,7 +1351,7 @@ public final class OpenSSLEngine extends SSLEngine implements SSLUtil.ProtocolIn
         } finally {
             if (MemorySegment.NULL.equals(ocspResponse)) {
                 // Failed to get a valid response
-                X509_STORE_CTX_set_error(x509ctx, X509_V_ERR_APPLICATION_VERIFICATION());
+                X509_STORE_CTX_set_error(x509ctx, X509_V_ERR_UNABLE_TO_GET_CRL());
             }
             OCSP_CERTID_free(certId);
             OCSP_BASICRESP_free(basicResponse);

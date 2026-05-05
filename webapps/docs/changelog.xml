@@ -10554,6 +10554,11 @@
         stream provider in debug log messages and exception messages.
         (markt)
       </fix>
+      <fix>
+        Limit the size of OCSP responses read by the panama-based OpenSSL
+        connector and report failures using
+        <code>X509_V_ERR_UNABLE_TO_GET_CRL</code>. (markt)
+      </fix>
     </changelog>
   </subsection>
 </section>
