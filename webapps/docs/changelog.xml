@@ -10549,6 +10549,11 @@
         Align the OCSP checks performed by the panama-based OpenSSL connector
         with those performed by JSSE. (markt)
       </add>
+      <fix>
+        Avoid logging the bearer token used by the cloud-membership token
+        stream provider in debug log messages and exception messages.
+        (markt)
+      </fix>
     </changelog>
   </subsection>
 </section>
