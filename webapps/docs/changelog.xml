@@ -10524,6 +10524,10 @@
         When setting the initial HTTP/2 connection limit, apply those limits
         earlier. (markt)
       </fix>
+      <fix>
+         Fix handling of <code>QSA</code> and <code>QSD</code> flags in
+        <code>RewriteValve</code>. (markt)
+      </fix>
     </changelog>
   </subsection>
 </section>
