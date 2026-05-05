@@ -119,6 +119,10 @@
         <bug>69643</bug>: Optimize directory listing for large amount of files.
         Patch submitted by  Loic de l'Eprevier. (remm)
       </fix>
+      <fix>
+        Align size tracking for multipart requests with FileUpload's use of
+        <code>long</code>. (schultz)
+      </fix>
     </changelog>
   </subsection>
   <subsection name="Other">
