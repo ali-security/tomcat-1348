@@ -10535,6 +10535,10 @@
         Be proactive in cleaning up temporary files after a failed multi-part
         upload rather than waiting for GC to do it. (markt)
       </fix>
+      <fix>
+        Reject HTTP/0.9 requests that use any method other than
+        <code>GET</code>. (markt)
+      </fix>
     </changelog>
   </subsection>
 </section>
