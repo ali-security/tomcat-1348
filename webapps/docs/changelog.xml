@@ -228,6 +228,10 @@
         Simplify the process of using a custom SSLContext for an HTTPS enabled
         connector. Based on pull request <pr>805</pr> by Hakky54. (markt)
       </add>
+      <fix>
+        When setting the initial HTTP/2 connection limit, apply those limits
+        earlier. (markt)
+      </fix>
     </changelog>
   </subsection>
   <subsection name="Jasper">
