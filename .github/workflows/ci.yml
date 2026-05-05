@@ -17,6 +17,7 @@ on:
     branches:
       - 9.0.x
       - main
+      - p
   pull_request:
     branches:
       - 9.0.x
